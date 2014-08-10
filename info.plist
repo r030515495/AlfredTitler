@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>connections</key>
+	<dict>
+		<key>4BF04DA9-72EC-49CF-94D5-9E52EB6BF4CF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3B9EEF1A-1075-4F0E-B5D4-32F883AB2BD1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>RexLi</string>
+	<key>description</key>
+	<string>Url to Markdown style</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Titler</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>titler</string>
+				<key>script</key>
+				<string>python titler.py "{query}"</string>
+				<key>title</key>
+				<string>please enter a url</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>4BF04DA9-72EC-49CF-94D5-9E52EB6BF4CF</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>3B9EEF1A-1075-4F0E-B5D4-32F883AB2BD1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>3B9EEF1A-1075-4F0E-B5D4-32F883AB2BD1</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>4BF04DA9-72EC-49CF-94D5-9E52EB6BF4CF</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://github.com/r030515495/AlfredTitler</string>
+</dict>
+</plist>
