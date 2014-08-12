@@ -40,7 +40,7 @@
 				<key>script</key>
 				<string>python titler.py "{query}"</string>
 				<key>title</key>
-				<string>please enter a url</string>
+				<string>Please Enter Url...</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
