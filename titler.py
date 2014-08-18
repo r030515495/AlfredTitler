@@ -17,7 +17,7 @@ def getUrl(url):
         html = response.read()
         response.close()
         soup = BeautifulSoup(html)
-        return "- [{0}]({1})".format(soup.html.head.title.contents[0], url)
+        return "- [{0}]({1})".format(soup.html.head.title.contents[0], response.geturl())
     except urllib2.URLError, e:
         return False
     except urllib2.HTTPError, e:
@@ -37,8 +37,8 @@ else:
 
 handler.push(max_results=1)
 
-# if __name__ == '__main__':
-#     getUrl(query)
+
+
 
 
 
