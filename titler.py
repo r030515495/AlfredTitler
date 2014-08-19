@@ -13,7 +13,8 @@ fixCoding()
 
 def getUrl(url):
     try:
-        response = urllib2.urlopen(url)
+        req = urllib2.Request(url, headers={'User-Agent' : "Magic Browser"})
+        response = urllib2.urlopen(req)
         html = response.read()
         response.close()
         soup = BeautifulSoup(html)
