@@ -29,7 +29,7 @@ def getUrl(url):
 
 
 handler = Alfred.Handler(args=sys.argv)
-result = getUrl(handler.query.split(" ")[1])
+result = getUrl(handler.query)
 
 if not result:
     handler.add_new_item(title="No find WebPage:(")
@@ -37,6 +37,7 @@ else:
     handler.add_new_item(title=result, arg=result, uid="#1")
 
 handler.push(max_results=1)
+
 
 
 
