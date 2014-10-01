@@ -18,7 +18,7 @@ def getUrl(url):
         html = response.read()
         response.close()
         soup = BeautifulSoup(html)
-        return "- [{0}]({1})".format(soup.html.head.title.contents[0], response.geturl())
+        return "- [{0}]({1})".format(soup.title.contents[0].strip(), response.geturl())
     except urllib2.URLError, e:
         return False
     except urllib2.HTTPError, e:
@@ -30,6 +30,9 @@ def getUrl(url):
 
 handler = Alfred.Handler(args=sys.argv)
 result = getUrl(handler.query)
+# test
+# not have html tag
+# result = getUrl("http://learn.getchef.com/")
 
 if not result:
     handler.add_new_item(title="No find WebPage:(")
