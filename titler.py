@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import urllib2,Alfred,sys;
 from bs4 import BeautifulSoup
-from chardet import *
-
 # query = sys.argv[1]
 
 def fixCoding():
@@ -17,9 +15,6 @@ def getUrl(url):
         req = urllib2.Request(url, headers={'User-Agent' : "Magic Browser"})
         response = urllib2.urlopen(req)
         html = response.read()
-        # chardetdict=chardet.detect(html)
-        # if chardetdict.get('encoding')=='Big5':
-        #     html=html.decode('big5','ignore').encode('utf-8','ignore')
         response.close()
         soup = BeautifulSoup(html)
         title = soup.title.contents[0].strip()
