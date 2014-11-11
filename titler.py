@@ -18,7 +18,13 @@ def getUrl(url):
         response.close()
         soup = BeautifulSoup(html)
         title = soup.title.contents[0].strip()
-        return "- [{0}]({1})".format(title, response.geturl())
+        if  title:
+            result = [];
+            result.append("[{0}]{1}".format(title, response.geturl()));
+            result.append("- [{0}]({1})".format(title, response.geturl()));
+            return result;
+        else:
+            return False;
     except urllib2.URLError, e:
         return False
     except urllib2.HTTPError, e:
@@ -39,9 +45,10 @@ result = getUrl(handler.query)
 if not result:
     handler.add_new_item(title="No find WebPage:(")
 else:
-    handler.add_new_item(title=result, arg=result, uid="#1")
+    for key in result:
+        handler.add_new_item(title=key, arg=key, uid="#1")
 
-handler.push(max_results=1)
+handler.push(max_results=2)
 
 
 
