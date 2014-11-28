@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import urllib2,Alfred,sys;
 from bs4 import BeautifulSoup
+from xml.sax.saxutils import escape
 # query = sys.argv[1]
 
 def fixCoding():
@@ -17,7 +18,7 @@ def getUrl(url):
         html = response.read()
         response.close()
         soup = BeautifulSoup(html)
-        title = soup.title.contents[0].strip()
+        title = escape(soup.title.contents[0].strip())
         if  title:
             result = [];
             result.append("[{0}]{1}".format(title, response.geturl()));
@@ -41,7 +42,8 @@ result = getUrl(handler.query)
 # result = getUrl("http://learn.getchef.com/")
 # title 遇到big5 網頁亂碼
 # result = getUrl("http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm")
-
+# need escape page
+# result = getUrl("http://jex.im/regulex/")
 if not result:
     handler.add_new_item(title="No find WebPage:(")
 else:
