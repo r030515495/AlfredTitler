@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-import urllib2,Alfred,sys;
+import urllib2
+import Alfred
+import sys
+import re
+
 from bs4 import BeautifulSoup
 from xml.sax.saxutils import escape
 # query = sys.argv[1]
@@ -11,8 +15,22 @@ def fixCoding():
         sys.setdefaultencoding('UTF-8')
 fixCoding()
 
+
+def decodeUrl(q):
+    '''
+    get url by  format
+    [{title}]{url}
+    - [{title}]({url})
+    '''
+    match = re.match(r"-{0,1}\s{0,1}\[.*\]\({0,1}([^\)]*)\){0,1}",q)
+    if match:
+        return match.group(1)
+    else :
+        return q
+
 def getUrl(url):
     try:
+        url = decodeUrl(url)
         req = urllib2.Request(url, headers={'User-Agent' : "Magic Browser"})
         response = urllib2.urlopen(req)
         html = response.read()
@@ -37,6 +55,7 @@ def getUrl(url):
 
 handler = Alfred.Handler(args=sys.argv)
 result = getUrl(handler.query)
+
 # test
 # not have html tag
 # result = getUrl("http://learn.getchef.com/")
@@ -44,6 +63,10 @@ result = getUrl(handler.query)
 # result = getUrl("http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm")
 # need escape page
 # result = getUrl("http://jex.im/regulex/")
+# 解析我自己產出的格式
+# result = getUrl("[讓你快速搜尋 Facebook 塗鴉牆內容——QSearch 團隊專訪 - Inside 硬塞的網路趨勢觀察]http://www.inside.com.tw/2013/02/19/qsearch-interview")
+# result = getUrl("- [讓你快速搜尋 Facebook 塗鴉牆內容——QSearch 團隊專訪 - Inside 硬塞的網路趨勢觀察](http://www.inside.com.tw/2013/02/19/qsearch-interview)")
+
 if not result:
     handler.add_new_item(title="No find WebPage:(")
 else:
