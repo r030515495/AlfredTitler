@@ -22,9 +22,9 @@ def decodeUrl(q):
     [{title}]{url}
     - [{title}]({url})
     '''
-    match = re.match(r"-{0,1}\s{0,1}\[.*\]\({0,1}([^\)]*)\){0,1}",q)
+    match = re.match(r"-{0,1}\s{0,1}\[(?P<title>.*)\]\({0,1}(?P<url>[^\)]*)\){0,1}",q)
     if match:
-        return match.group(1)
+        return match.group("url")
     else :
         return q
 
