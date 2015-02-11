@@ -37,6 +37,8 @@ def getUrl(url):
         response.close()
         soup = BeautifulSoup(html)
         title = escape(soup.title.contents[0].strip())
+        p=re.compile('\s+')
+        title=re.sub(p,' ',title)
         if  title:
             result = [];
             result.append("[{0}]{1}".format(title, response.geturl()));
@@ -66,6 +68,8 @@ result = getUrl(handler.query)
 # 解析我自己產出的格式
 # result = getUrl("[讓你快速搜尋 Facebook 塗鴉牆內容——QSearch 團隊專訪 - Inside 硬塞的網路趨勢觀察]http://www.inside.com.tw/2013/02/19/qsearch-interview")
 # result = getUrl("- [讓你快速搜尋 Facebook 塗鴉牆內容——QSearch 團隊專訪 - Inside 硬塞的網路趨勢觀察](http://www.inside.com.tw/2013/02/19/qsearch-interview)")
+# replace \n \t
+# result = getUrl("https://www.youtube.com/playlist?list=PL5QDUc5gluoS5WglgXmZg6yX5p6X8OTrN")
 
 if not result:
     handler.add_new_item(title="No find WebPage:(")
