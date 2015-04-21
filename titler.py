@@ -43,6 +43,7 @@ def getUrl(url):
             result = [];
             result.append("[{0}]{1}".format(title, response.geturl()));
             result.append("- [{0}]({1})".format(title, response.geturl()));
+            result.append("[{0}]({1})".format(title, response.geturl()));
             return result;
         else:
             return False;
@@ -77,7 +78,7 @@ else:
     for key in result:
         handler.add_new_item(title=key, arg=key, uid="#1")
 
-handler.push(max_results=2)
+handler.push()
 
 
 
