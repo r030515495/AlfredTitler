@@ -7,7 +7,9 @@ import re
 from bs4 import BeautifulSoup
 from xml.sax.saxutils import escape
 # query = sys.argv[1]
-
+URL_SCHEME_RE = re.compile(r'^[a-z][a-z0-9.+-]*://', re.IGNORECASE)
+MARKDOWN_LINK_RE = re.compile(r'-{0,1}\s{0,1}\[(?P<title>.*)\]\({0,1}(?P<url>[^\)]*)\){0,1}', re.IGNORECASE)
+HTTP = 'http://'
 
 def fixCoding():
     sysEncoding = sys.getdefaultencoding()
@@ -23,8 +25,7 @@ def decodeUrl(q):
     [{title}]{url}
     - [{title}]({url})
     '''
-    match = re.match(
-        r"-{0,1}\s{0,1}\[(?P<title>.*)\]\({0,1}(?P<url>[^\)]*)\){0,1}", q)
+    match = MARKDOWN_LINK_RE.match(q)
     if match:
         return match.group("url")
     else:
@@ -34,6 +35,8 @@ def decodeUrl(q):
 def getUrl(url):
     try:
         url = decodeUrl(url)
+        if not URL_SCHEME_RE.match(url):
+            url=HTTP+url
         req = urllib2.Request(url, headers={'User-Agent': "Magic Browser"})
         response = urllib2.urlopen(req)
         html = response.read()
@@ -69,6 +72,8 @@ result = getUrl(handler.query)
 # result = getUrl("- [讓你快速搜尋 Facebook 塗鴉牆內容——QSearch 團隊專訪 - Inside 硬塞的網路趨勢觀察](http://www.inside.com.tw/2013/02/19/qsearch-interview)")
 # replace \n \t
 # result = getUrl("https://www.youtube.com/playlist?list=PL5QDUc5gluoS5WglgXmZg6yX5p6X8OTrN")
+# not have Protocol
+# result = getUrl("tw.yahoo.com")
 
 if not result:
     handler.add_new_item(title="Page not found :(")

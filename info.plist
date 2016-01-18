@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string></string>
+	<key>category</key>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>4BF04DA9-72EC-49CF-94D5-9E52EB6BF4CF</key>
@@ -33,7 +35,7 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Titler v0.8</string>
+	<string>Titler v0.9</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -45,14 +47,6 @@
 				<integer>127</integer>
 				<key>keyword</key>
 				<string>tr</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
 				<key>script</key>
 				<string>python titler.py "{query}"</string>
 				<key>title</key>
